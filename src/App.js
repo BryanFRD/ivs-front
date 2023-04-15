@@ -1,24 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { lazy } from 'react';
+import BaseScreen from './screen/BaseScreen';
+import HomeScreen from './screen/HomeScreen';
+
+const ErrorScreen = lazy(() => import('./screen/ErrorScreen'));
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<BaseScreen />}>
+          <Route index element={<HomeScreen />}/>
+          <Route path='*' element={<ErrorScreen />}/>
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
