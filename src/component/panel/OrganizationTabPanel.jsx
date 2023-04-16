@@ -24,7 +24,7 @@ const OrganizationTabPanel = ({limit, offset}) => {
   }, [limit, offset, search]);
   
   const handleOpenModal = (organization) => {
-    setModal(organization ?? {})
+    setModal(organization ?? {});
   }
   
   const handleCreate = async (organization) => {
@@ -35,11 +35,11 @@ const OrganizationTabPanel = ({limit, offset}) => {
   }
   
   return (
-    <Tab.Panel className='flex flex-col'>
-      <div className='flex justify-end'>
+    <Tab.Panel className='flex flex-col max-h-full'>
+      <div className='flex justify-end mb-5'>
         <Button className='bg-green-700 border-none hover:bg-green-900' onClick={() => handleOpenModal({type: 'CREATE', submit: handleCreate})}>Créer</Button>
       </div>
-      <div className='flex flex-wrap gap-10'>
+      <div className='flex flex-wrap gap-10 max-h-full overflow-auto'>
         {organizations?.map(organization => <OrganizationCard key={organization.id} {...{organization, handleOpenModal}} fetchCallback={fetchOrganizations}/>)}
       </div>
       <OrganizationModal {...{modal, setModal}}/>

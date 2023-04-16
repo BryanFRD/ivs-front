@@ -1,7 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Link, useOutletContext } from 'react-router-dom';
-import Card from '../Card';
+import { useOutletContext } from 'react-router-dom';
 import { Tab } from '@headlessui/react';
 import Button from '../Button';
 import BuildingModal from '../modal/BuildingModal';
@@ -24,7 +23,7 @@ const BuildingTabPanel = ({limit, offset}) => {
   }, [limit, offset, search]);
   
   const handleOpenModal = (building) => {
-    setModal(building ?? {})
+    setModal(building ?? {});
   }
   
   const handleCreate = async (building) => {
@@ -35,11 +34,11 @@ const BuildingTabPanel = ({limit, offset}) => {
   }
   
   return (
-    <Tab.Panel className='flex flex-col'>
-      <div className='flex justify-end'>
+    <Tab.Panel className='flex flex-col max-h-full'>
+      <div className='flex justify-end mb-5'>
         <Button className='bg-green-700 border-none hover:bg-green-900' onClick={() => handleOpenModal({type: 'CREATE', submit: handleCreate})}>Créer</Button>
       </div>
-      <div className='flex flex-wrap gap-10'>
+      <div className='flex flex-wrap gap-10 max-h-full overflow-auto'>
         {buildings?.map(building => <BuildingCard key={building.id} {...{building, handleOpenModal}} fetchCallback={fetchBuildings}/>)}
       </div>
       <BuildingModal {...{modal, setModal}}/>

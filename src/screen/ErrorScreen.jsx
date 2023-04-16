@@ -13,7 +13,7 @@ const ErrorScreen = () => {
     <div className='flex flex-col justify-center items-center gap-3 h-full'>
       <h1 className='text-5xl text-red-600'>Erreur 404</h1>
       <span className='text-zinc-400'>Page non trouvée</span>
-      <Button onClick={handleNavigateHome} className='border-none bg-red-700 hover:bg-red-600 mt-10'>Revenir en arrière</Button>
+      <Button onClick={handleNavigateHome} className='border-none bg-red-700 hover:bg-red-600 mt-10'>Revenir à la page d'accueil</Button>
     </div>
   );
 };

@@ -9,7 +9,7 @@ const RoomModal = ({modal, setModal}) => {
   const [error, setError] = useState(false);
   
   const promiseOptions = (value) => {
-    return axios.get('https://localhost:8000/building', {params: {search: value}})
+    return axios.get('https://localhost:8000/building', {params: {search: value, limit: 20}})
       .then(response => response?.data?.map(({id, name}) => ({value: id, label: name})));
   }
   
@@ -46,9 +46,16 @@ const RoomModal = ({modal, setModal}) => {
           <div className='flex gap-3 justify-between items-center'>
             <label className='text-lg'>Bâtiment: </label>
             <AsyncSelect
-              name='building'
+              name='building_id'
               placeholder='Bâtiement'
               className='w-48 text-left'
+              classNames={{
+                control: () => 'bg-zinc-700',
+                input: () => 'text-zinc-100',
+                singleValue: () => 'text-zinc-400',
+                menu: () => 'bg-zinc-700 text-zinc-200',
+                option: ({isFocused, isSelected}) => (isFocused || isSelected) && 'bg-zinc-600'
+              }}
               defaultValue={modal?.room?.building && {value: modal?.room?.building?.id, label: modal?.room?.building?.name}}
               isClearable
               defaultOptions

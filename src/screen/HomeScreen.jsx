@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import Button from '../component/Button';
 import { Tab } from '@headlessui/react';
 import OrganizationTabPanel from '../component/panel/OrganizationTabPanel';
@@ -13,7 +13,7 @@ const HomeScreen = () => {
   ];
   
   return (
-    <Tab.Group as='div' className='flex h-full'>
+    <Tab.Group as='div' className='flex h-full max-h-full'>
       <Tab.List as='div' className='flex flex-col h-full'>
         {options?.map(({id, name}) => 
           <Tab as='div' key={id} className='outline-none'>

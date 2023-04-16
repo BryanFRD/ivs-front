@@ -22,7 +22,7 @@ const BuildingCard = ({building, handleOpenModal, fetchCallback}) => {
   return (
     <Card>
       <Link to={`/building/${building.id}`} className='underline underline-offset-2 hover:text-zinc-300'>{building.name}</Link>
-      <span>{building.zipcode}</span>
+      <span>Zipcode: {building.zipcode}</span>
       <span>Organization: {building?.organization?.name ?? 'Aucune'}</span>
       <div className='flex gap-5 justify-end'>
         <Button className='bg-blue-700 border-none hover:bg-blue-900' onClick={() => handleOpenModal({type: 'UPDATE', submit: handleUpdate, building})}>Modifier</Button>
