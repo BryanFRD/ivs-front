@@ -24,7 +24,7 @@ const OrganizationTabPanel = ({limit, offset}) => {
   }, [limit, offset, search]);
   
   const handleOpenModal = (organization) => {
-    setModal(organization ?? {})
+    setModal(organization ?? {});
   }
   
   const handleCreate = async (organization) => {

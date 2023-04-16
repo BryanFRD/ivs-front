@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import Button from '../component/Button';
 import { Tab } from '@headlessui/react';
 import OrganizationTabPanel from '../component/panel/OrganizationTabPanel';

@@ -24,7 +24,7 @@ const RoomTabPanel = ({limit, offset}) => {
   }, [limit, offset, search]);
   
   const handleOpenModal = (room) => {
-    setModal(room ?? {})
+    setModal(room ?? {});
   }
   
   const handleCreate = async (room) => {

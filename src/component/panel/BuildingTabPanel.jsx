@@ -1,7 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Link, useOutletContext } from 'react-router-dom';
-import Card from '../Card';
+import { useOutletContext } from 'react-router-dom';
 import { Tab } from '@headlessui/react';
 import Button from '../Button';
 import BuildingModal from '../modal/BuildingModal';
@@ -24,7 +23,7 @@ const BuildingTabPanel = ({limit, offset}) => {
   }, [limit, offset, search]);
   
   const handleOpenModal = (building) => {
-    setModal(building ?? {})
+    setModal(building ?? {});
   }
   
   const handleCreate = async (building) => {
