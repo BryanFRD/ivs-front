@@ -13,7 +13,7 @@ const HomeScreen = () => {
   ];
   
   return (
-    <Tab.Group as='div' className='flex h-full'>
+    <Tab.Group as='div' className='flex h-full max-h-full'>
       <Tab.List as='div' className='flex flex-col h-full'>
         {options?.map(({id, name}) => 
           <Tab as='div' key={id} className='outline-none'>

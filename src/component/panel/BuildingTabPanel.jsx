@@ -35,11 +35,11 @@ const BuildingTabPanel = ({limit, offset}) => {
   }
   
   return (
-    <Tab.Panel className='flex flex-col'>
-      <div className='flex justify-end'>
+    <Tab.Panel className='flex flex-col max-h-full'>
+      <div className='flex justify-end mb-5'>
         <Button className='bg-green-700 border-none hover:bg-green-900' onClick={() => handleOpenModal({type: 'CREATE', submit: handleCreate})}>Créer</Button>
       </div>
-      <div className='flex flex-wrap gap-10'>
+      <div className='flex flex-wrap gap-10 max-h-full overflow-auto'>
         {buildings?.map(building => <BuildingCard key={building.id} {...{building, handleOpenModal}} fetchCallback={fetchBuildings}/>)}
       </div>
       <BuildingModal {...{modal, setModal}}/>

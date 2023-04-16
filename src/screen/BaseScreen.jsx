@@ -14,7 +14,7 @@ const BaseScreen = () => {
       <header>
         <Navbar {...{search, handleSearch}} />
       </header>
-      <main className='grow'>
+      <main className='grow max-h-full overflow-hidden'>
         <Outlet context={{search, setSearch, handleSearch}} />
       </main>
     </div>
