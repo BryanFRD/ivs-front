@@ -33,8 +33,8 @@ const OrganizationModal = ({modal, setModal}) => {
             <Input name='name' placeholder='nom' defaultValue={modal?.organization?.name ?? ''} className='w-48'/>
           </div>
           <div className='flex gap-5 justify-end'>
-            <Button className='bg-red-700 border-none hover:bg-red-900' onClick={() => setModal(false)}>Annuler</Button>
-            <Button className='bg-green-700 border-none hover:bg-green-900'>{modal?.type === 'CREATE' ? 'Créer' : 'Valider'}</Button>
+            <Button type="button" className='bg-red-700 border-none hover:bg-red-900' onClick={() => setModal(false)}>Annuler</Button>
+            <Button type="submit" className='bg-green-700 border-none hover:bg-green-900'>{modal?.type === 'CREATE' ? 'Créer' : 'Valider'}</Button>
           </div>
         </form>
       </div>

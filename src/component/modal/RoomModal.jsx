@@ -10,7 +10,7 @@ const RoomModal = ({modal, setModal}) => {
   
   const promiseOptions = (value) => {
     return axios.get('https://localhost:8000/building', {params: {search: value, limit: 20}})
-      .then(response => response?.data?.map(({id, name}) => ({value: id, label: name})));
+      .then(({data}) => data?.datas?.map(({id, name}) => ({value: id, label: name})));
   }
   
   const handleSubmit = async (event) => {
@@ -63,8 +63,8 @@ const RoomModal = ({modal, setModal}) => {
             />
           </div>
           <div className='flex gap-5 justify-end'>
-            <Button className='bg-red-700 border-none hover:bg-red-900' onClick={() => setModal(false)}>Annuler</Button>
-            <Button className='bg-green-700 border-none hover:bg-green-900'>{modal?.type === 'CREATE' ? 'Créer' : 'Valider'}</Button>
+            <Button type="button" className='bg-red-700 border-none hover:bg-red-900' onClick={() => setModal(false)}>Annuler</Button>
+            <Button type="submit" className='bg-green-700 border-none hover:bg-green-900'>{modal?.type === 'CREATE' ? 'Créer' : 'Valider'}</Button>
           </div>
         </form>
       </div>

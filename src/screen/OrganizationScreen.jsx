@@ -23,7 +23,7 @@ const OrganizationScreen = () => {
   
   const fetchBuildings = () => {
     axios.get(`https://localhost:8000/organization/${id}/buildings`, {params: {search, offset, limit: 15}})
-      .then(({data}) => {console.log(data); setBuildings(data)})
+      .then(({data}) => {setBuildings(data)})
       .catch(console.log);
   }
   
