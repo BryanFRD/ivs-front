@@ -9,18 +9,23 @@ import ReactPaginate from 'react-paginate';
 
 const OrganizationTabPanel = () => {
   const [organizations, setOrganizations] = useState();
+  console.log('organizations:', organizations);
   const {search} = useOutletContext();
   const [modal, setModal] = useState();
   const [offset, setOffset] = useState(0);
   
-  const fetchOrganizations = () => {
+  const fetchOrganizations = (abortController) => {
     axios.get('https://localhost:8000/organization', {params: {offset, search, limit: 15}})
       .then(response => setOrganizations(response?.data))
       .catch(console.log);
   }
   
   useEffect(() => {
-    fetchOrganizations();
+    const abortController = new AbortController();
+    
+    fetchOrganizations(abortController);
+    
+    return () => abortController.abort();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [offset, search]);
   

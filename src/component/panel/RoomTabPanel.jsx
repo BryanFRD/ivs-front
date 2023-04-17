@@ -14,14 +14,18 @@ const RoomTabPanel = () => {
   const [modal, setModal] = useState();
   const [offset, setOffset] = useState(0);
   
-  const fetchRooms = () => {
-    axios.get('https://localhost:8000/room', {params: {offset, search, limit: 15}})
+  const fetchRooms = (abortController) => {
+    axios.get('https://localhost:8000/room', {params: {offset, search, limit: 15}, signal: abortController?.signal})
       .then(response => setRooms(response?.data))
       .catch(console.log);
   }
   
   useEffect(() => {
-    fetchRooms();
+    const abortController = new AbortController();
+    
+    fetchRooms(abortController);
+    
+    return () => abortController.abort();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [offset, search]);
   

@@ -26,7 +26,7 @@ const RoomScreen = () => {
           <div className='flex flex-col gap-3'>
             <div className='flex flex-col items-center gap-10 text-xl'>
               <h1 className='text-3xl'>Organisation: {room.name}</h1>
-              <h2>Peoples: {room.peoples}</h2>
+              <h2>Peoples: {room?.peoples ?? 'Aucune'}</h2>
               <div>
                 <span>Bâtiement: </span>
                 <Link

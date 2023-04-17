@@ -21,8 +21,8 @@ const BuildingScreen = () => {
       .catch(() => navigate('/'));
   }
   
-  const fetchRooms = () => {
-    axios.get(`https://localhost:8000/building/${id}/rooms`, {params: {search, offset, limit: 15}})
+  const fetchRooms = (abortController) => {
+    axios.get(`https://localhost:8000/building/${id}/rooms`, {params: {search, offset, limit: 15}, signal: abortController?.signal})
       .then(({data}) => setRooms(data))
       .catch(console.log);
   }
@@ -43,7 +43,11 @@ const BuildingScreen = () => {
   }, [id]);
   
   useEffect(() => {
-    fetchRooms();
+    const abortController = new AbortController();
+    
+    fetchRooms(abortController);
+    
+    return () => abortController.abort();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id, search, offset]);
   
@@ -63,7 +67,7 @@ const BuildingScreen = () => {
                     {building.organization_name ?? 'Aucune'}
                 </Link>
               </div>
-              <span>Personnes: {building.peoples}</span>
+              <span>Personnes: {building?.peoples ?? 'Aucune'}</span>
             </div>
           </div>
           <div className='flex flex-col gap-5 justify-between overflow-auto'>

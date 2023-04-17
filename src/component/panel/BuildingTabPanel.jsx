@@ -13,14 +13,18 @@ const BuildingTabPanel = () => {
   const [modal, setModal] = useState();
   const [offset, setOffset] = useState(0);
   
-  const fetchBuildings = () => {
-    axios.get('https://localhost:8000/building', {params: {offset, search, limit: 15}})
+  const fetchBuildings = (abortController) => {
+    axios.get('https://localhost:8000/building', {params: {offset, search, limit: 15}, signal: abortController?.signal})
       .then(response => setBuildings(response?.data))
       .catch(console.log);
   }
   
   useEffect(() => {
-    fetchBuildings();
+    const abortController = new AbortController();
+    
+    fetchBuildings(abortController);
+    
+    return () => abortController.abort();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [offset, search]);
   
