@@ -10,7 +10,7 @@ const BuildingModal = ({modal, setModal}) => {
   
   const promiseOptions = (value) => {
     return axios.get('https://localhost:8000/organization', {params: {search: value, limit: 20}})
-      .then(response => response?.data?.map(({id, name}) => ({value: id, label: name})));
+      .then(({data}) => data?.datas?.map(({id, name}) => ({value: id, label: name})));
   }
   
   const handleSubmit = async (event) => {
@@ -56,15 +56,15 @@ const BuildingModal = ({modal, setModal}) => {
                 menu: () => 'bg-zinc-700 text-zinc-200',
                 option: ({isFocused, isSelected}) => (isFocused || isSelected) && 'bg-zinc-600'
               }}
-              defaultValue={modal?.building?.organization && {value: modal?.building?.organization?.id, label: modal?.building?.organization?.name}}
+              defaultValue={{value: modal?.building?.organization_id, label: modal?.building?.organization_name}}
               isClearable
               defaultOptions
               loadOptions={promiseOptions}
             />
           </div>
           <div className='flex gap-5 justify-end'>
-            <Button className='bg-red-700 border-none hover:bg-red-900' onClick={() => setModal(false)}>Annuler</Button>
-            <Button className='bg-green-700 border-none hover:bg-green-900'>{modal?.type === 'CREATE' ? 'Créer' : 'Valider'}</Button>
+            <Button type="button" className='bg-red-700 border-none hover:bg-red-900' onClick={() => setModal(false)}>Annuler</Button>
+            <Button type="submit" className='bg-green-700 border-none hover:bg-green-900'>{modal?.type === 'CREATE' ? 'Créer' : 'Valider'}</Button>
           </div>
         </form>
       </div>
