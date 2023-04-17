@@ -9,7 +9,6 @@ import ReactPaginate from 'react-paginate';
 
 const OrganizationTabPanel = () => {
   const [organizations, setOrganizations] = useState();
-  console.log('organizations:', organizations);
   const {search} = useOutletContext();
   const [modal, setModal] = useState();
   const [offset, setOffset] = useState(0);
