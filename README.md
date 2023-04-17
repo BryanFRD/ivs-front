@@ -2,14 +2,12 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Exécuter les commandes suivantes:
 
-In the project directory, you can run:
+### `npm install`
+Installe les dépendances du projet
 
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Lance le projet 
+Ouvrez [http://localhost:3000](http://localhost:3000) pour l'afficher dans votre navigateur
