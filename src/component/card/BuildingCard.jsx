@@ -23,7 +23,8 @@ const BuildingCard = ({building, handleOpenModal, fetchCallback}) => {
     <Card>
       <Link to={`/building/${building.id}`} className='underline underline-offset-2 hover:text-zinc-300'>{building.name}</Link>
       <span>Zipcode: {building.zipcode}</span>
-      <span>Organization: {building?.organization?.name ?? 'Aucune'}</span>
+      <span>Organization: {building?.organization_name ?? 'Aucune'}</span>
+      <span>Personnes: {building?.peoples ?? 'Aucune'}</span>
       <div className='flex gap-5 justify-end'>
         <Button className='bg-blue-700 border-none hover:bg-blue-900' onClick={() => handleOpenModal({type: 'UPDATE', submit: handleUpdate, building})}>Modifier</Button>
         <Button className='bg-red-700 border-none hover:bg-red-900' onClick={() => handleDelete()}>Supprimer</Button>
