@@ -1,6 +1,7 @@
 ## Exécuter les commandes suivantes:
 
 ### `npm install`
+
 Installe les dépendances du projet
 
 ### `npm start`
