@@ -7,9 +7,7 @@ const BaseScreen = () => {
   const [search, setSearch] = useState('');
   
   const handleSearch = (event) => {
-    console.log('event:', event);
     setSearch(event?.target?.value ?? '');
-    
   }
   
   return (
@@ -18,7 +16,7 @@ const BaseScreen = () => {
         <Navbar {...{search, handleSearch}} />
       </header>
       <main className='grow max-h-full overflow-hidden'>
-        <Outlet context={{search, setSearch, handleSearch: (event) => debounce(handleSearch, 250)}} />
+        <Outlet context={{search, setSearch, handleSearch: debounce(handleSearch, 250)}} />
       </main>
     </div>
   );
