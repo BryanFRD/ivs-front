@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Button from '../component/Button';
 import { Tab } from '@headlessui/react';
 import OrganizationTabPanel from '../component/panel/OrganizationTabPanel';
@@ -6,6 +6,8 @@ import BuildingTabPanel from '../component/panel/BuildingTabPanel';
 import RoomTabPanel from '../component/panel/RoomTabPanel';
 
 const HomeScreen = () => {
+  const [datas, setDatas] = useState({});
+  
   const options = [
     {id: 'organizations', name: 'Organisations'},
     {id: 'buildiqdsngs', name: 'Bâtiments'},
@@ -13,8 +15,8 @@ const HomeScreen = () => {
   ];
   
   return (
-    <Tab.Group as='div' className='flex h-full max-h-full'>
-      <Tab.List as='div' className='flex flex-col h-full'>
+    <Tab.Group as='div' className='flex flex-col md:flex-row h-full max-h-full'>
+      <Tab.List as='div' className='flex md:flex-col md:h-full'>
         {options?.map(({id, name}) => 
           <Tab as='div' key={id} className='outline-none'>
             {({selected}) =>
@@ -26,9 +28,9 @@ const HomeScreen = () => {
         )}
       </Tab.List>
       <Tab.Panels className='grow h-full bg-zinc-700 p-5'>
-        <OrganizationTabPanel />
-        <BuildingTabPanel />
-        <RoomTabPanel />
+        <OrganizationTabPanel {...{datas, setDatas}}/>
+        <BuildingTabPanel {...{datas, setDatas}}/>
+        <RoomTabPanel {...{datas, setDatas}}/>
       </Tab.Panels>
     </Tab.Group>
   );

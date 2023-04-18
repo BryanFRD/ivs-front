@@ -7,22 +7,20 @@ import BuildingModal from '../modal/BuildingModal';
 import BuildingCard from '../card/BuildingCard';
 import ReactPaginate from 'react-paginate';
 
-const BuildingTabPanel = () => {
-  const [buildings, setBuildings] = useState();
+const BuildingTabPanel = ({datas: {buildings}, setDatas}) => {
   const {search} = useOutletContext();
   const [modal, setModal] = useState();
   const [offset, setOffset] = useState(0);
   
   const fetchBuildings = () => {
     axios.get('https://localhost:8000/building', {params: {offset, search, limit: 15}})
-      .then(response => setBuildings(response?.data))
-      .catch(console.log);
+      .then(response => setDatas(prevValue => ({...prevValue, buildings: response?.data})))
   }
   
-  useEffect(() => {
+  useEffect(() => {    
     fetchBuildings();
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [offset, search]);
+  }, [buildings, offset, search]);
   
   const handleOpenModal = (building) => {
     setModal(building ?? {});

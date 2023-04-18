@@ -1,29 +1,27 @@
 import { Tab } from '@headlessui/react';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Link, useOutletContext } from 'react-router-dom';
+import { useOutletContext } from 'react-router-dom';
 import Button from '../Button';
-import Card from '../Card';
 import RoomModal from '../modal/RoomModal';
 import RoomCard from '../card/RoomCard';
 import ReactPaginate from 'react-paginate';
 
-const RoomTabPanel = () => {
-  const [rooms, setRooms] = useState();
+const RoomTabPanel = ({datas: {rooms}, setDatas}) => {
   const {search} = useOutletContext();
   const [modal, setModal] = useState();
   const [offset, setOffset] = useState(0);
   
   const fetchRooms = () => {
     axios.get('https://localhost:8000/room', {params: {offset, search, limit: 15}})
-      .then(response => setRooms(response?.data))
+      .then(response => setDatas(prevValue => ({...prevValue, rooms: response?.data})))
       .catch(console.log);
   }
   
   useEffect(() => {
     fetchRooms();
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [offset, search]);
+  }, [rooms, offset, search]);
   
   const handleOpenModal = (room) => {
     setModal(room ?? {});
