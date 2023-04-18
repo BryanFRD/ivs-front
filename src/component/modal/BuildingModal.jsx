@@ -19,7 +19,6 @@ const BuildingModal = ({modal, setModal}) => {
     
     const building = Object.fromEntries(new FormData(event.currentTarget));
     building.id = modal?.building?.id;
-    console.log('building:', building);
     
     const succeed = await modal?.submit(building);
     setError(!succeed)
