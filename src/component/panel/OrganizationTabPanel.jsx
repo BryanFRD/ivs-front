@@ -7,26 +7,21 @@ import OrganizationModal from '../modal/OrganizationModal';
 import OrganizationCard from '../card/OrganizationCard';
 import ReactPaginate from 'react-paginate';
 
-const OrganizationTabPanel = () => {
-  const [organizations, setOrganizations] = useState();
+const OrganizationTabPanel = ({datas: {organizations}, setDatas}) => {
   const {search} = useOutletContext();
   const [modal, setModal] = useState();
   const [offset, setOffset] = useState(0);
   
-  const fetchOrganizations = (abortController) => {
+  const fetchOrganizations = () => {
     axios.get('https://localhost:8000/organization', {params: {offset, search, limit: 15}})
-      .then(response => setOrganizations(response?.data))
+      .then(response => setDatas(prevValue => ({...prevValue, organizations: response?.data})))
       .catch(console.log);
   }
   
   useEffect(() => {
-    const abortController = new AbortController();
-    
-    fetchOrganizations(abortController);
-    
-    return () => abortController.abort();
+    fetchOrganizations();
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [offset, search]);
+  }, [organizations, offset, search]);
   
   const handleOpenModal = (organization) => {
     setModal(organization ?? {});

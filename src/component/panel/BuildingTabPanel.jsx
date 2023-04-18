@@ -15,11 +15,12 @@ const BuildingTabPanel = ({datas: {buildings}, setDatas}) => {
   const fetchBuildings = () => {
     axios.get('https://localhost:8000/building', {params: {offset, search, limit: 15}})
       .then(response => setDatas(prevValue => ({...prevValue, buildings: response?.data})))
+  }
   
   useEffect(() => {    
     fetchBuildings();
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [datas, offset, search]);
+  }, [buildings, offset, search]);
   
   const handleOpenModal = (building) => {
     setModal(building ?? {});
