@@ -56,7 +56,7 @@ const RoomModal = ({modal, setModal}) => {
                 menu: () => 'bg-zinc-700 text-zinc-200',
                 option: ({isFocused, isSelected}) => (isFocused || isSelected) && 'bg-zinc-600'
               }}
-              defaultValue={modal?.room?.building && {value: modal?.room?.building?.id, label: modal?.room?.building?.name}}
+              defaultValue={{value: modal?.room?.building?.id, label: modal?.room?.building?.name}}
               isClearable
               defaultOptions
               loadOptions={promiseOptions}

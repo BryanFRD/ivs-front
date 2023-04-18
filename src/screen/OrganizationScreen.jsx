@@ -21,8 +21,8 @@ const OrganizationScreen = () => {
       .catch(() => navigate('/'));
   }
   
-  const fetchBuildings = () => {
-    axios.get(`https://localhost:8000/organization/${id}/buildings`, {params: {search, offset, limit: 15}})
+  const fetchBuildings = (abortController) => {
+    axios.get(`https://localhost:8000/organization/${id}/buildings`, {params: {search, offset, limit: 15}, signal: abortController?.signal})
       .then(({data}) => {setBuildings(data)})
       .catch(console.log);
   }
@@ -43,7 +43,11 @@ const OrganizationScreen = () => {
   }, [id]);
   
   useEffect(() => {
-    fetchBuildings();
+    const abortController = new AbortController();
+    
+    fetchBuildings(abortController);
+    
+    return () => abortController.abort();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id, search, offset]);
   
@@ -54,7 +58,7 @@ const OrganizationScreen = () => {
           <div className='flex flex-col gap-3'>
             <div className='flex flex-col items-center gap-10 text-xl'>
               <h1 className='text-3xl'>Organisation: {organization.name}</h1>
-              <span>Personnes: {organization.peoples}</span>
+              <span>Personnes: {organization?.peoples ?? 'Aucune'}</span>
             </div>
           </div>
           <div className='flex flex-col gap-5 justify-between overflow-auto'>
