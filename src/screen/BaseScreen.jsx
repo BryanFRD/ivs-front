@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import Navbar from '../component/Navbar';
+import debounce from 'lodash.debounce'
 
 const BaseScreen = () => {
   const [search, setSearch] = useState('');
   
   const handleSearch = (event) => {
+    console.log('event:', event);
     setSearch(event?.target?.value ?? '');
+    
   }
   
   return (
@@ -15,7 +18,7 @@ const BaseScreen = () => {
         <Navbar {...{search, handleSearch}} />
       </header>
       <main className='grow max-h-full overflow-hidden'>
-        <Outlet context={{search, setSearch, handleSearch}} />
+        <Outlet context={{search, setSearch, handleSearch: (event) => debounce(handleSearch, 250)}} />
       </main>
     </div>
   );

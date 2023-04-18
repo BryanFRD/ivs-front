@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Button from '../component/Button';
 import { Tab } from '@headlessui/react';
 import OrganizationTabPanel from '../component/panel/OrganizationTabPanel';
@@ -6,6 +6,8 @@ import BuildingTabPanel from '../component/panel/BuildingTabPanel';
 import RoomTabPanel from '../component/panel/RoomTabPanel';
 
 const HomeScreen = () => {
+  const [datas, setDatas] = useState({});
+  
   const options = [
     {id: 'organizations', name: 'Organisations'},
     {id: 'buildiqdsngs', name: 'Bâtiments'},
@@ -26,9 +28,9 @@ const HomeScreen = () => {
         )}
       </Tab.List>
       <Tab.Panels className='grow h-full bg-zinc-700 p-5'>
-        <OrganizationTabPanel />
-        <BuildingTabPanel />
-        <RoomTabPanel />
+        <OrganizationTabPanel {...{datas, setDatas}}/>
+        <BuildingTabPanel {...{datas, setDatas}}/>
+        <RoomTabPanel {...{datas, setDatas}}/>
       </Tab.Panels>
     </Tab.Group>
   );
