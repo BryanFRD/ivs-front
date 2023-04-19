@@ -21,7 +21,7 @@ const OrganizationTabPanel = ({datas: {organizations}, setDatas}) => {
   useEffect(() => {
     fetchOrganizations();
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [organizations, offset, search]);
+  }, [offset, search]);
   
   const handleOpenModal = (organization) => {
     setModal(organization ?? {});
