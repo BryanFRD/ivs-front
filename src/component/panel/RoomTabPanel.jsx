@@ -21,7 +21,7 @@ const RoomTabPanel = ({datas: {rooms}, setDatas}) => {
   useEffect(() => {
     fetchRooms();
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [rooms, offset, search]);
+  }, [offset, search]);
   
   const handleOpenModal = (room) => {
     setModal(room ?? {});

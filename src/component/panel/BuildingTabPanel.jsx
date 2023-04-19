@@ -20,7 +20,7 @@ const BuildingTabPanel = ({datas: {buildings}, setDatas}) => {
   useEffect(() => {    
     fetchBuildings();
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [buildings, offset, search]);
+  }, [offset, search]);
   
   const handleOpenModal = (building) => {
     setModal(building ?? {});
